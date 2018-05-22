@@ -1,2 +1,8 @@
 <h1>Coins#new</h1>
 <p>Find me in app/views/coins/new.html.erb</p>
+
+<%= simple_form_for @coin do |f| %>
+  <%= f.input :name %>
+  <%= f.input :quantity %>
+  <%= f.submit "Add Crypto", class: "btn btn-primary" %>
+<% end %>

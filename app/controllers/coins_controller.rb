@@ -1,5 +1,6 @@
 class CoinsController < ApplicationController
   def new
+    @coin = Coin.new
   end
 
   def create
