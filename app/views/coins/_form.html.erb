@@ -1,0 +1,7 @@
+<h1>NUEVA CRIPTOMONEDA</h1>
+
+<%= simple_form_for @coin do |f| %>
+  <%= f.input :name %>
+  <%= f.input :quantity %>
+  <%= f.submit "Add Crypto", class: "btn btn-primary" %>
+<% end %>
