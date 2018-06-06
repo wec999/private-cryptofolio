@@ -8,6 +8,7 @@ class CoinsController < ApplicationController
   def create
     @coin = Coin.new(coin_params)
     @coin.user = current_user
+    @coin.cmarketcap_id = @coin.listing_api_coinmarketcap(@coin.name)
     if @coin.save!
       redirect_to coin_path(@coin)
     else
@@ -36,7 +37,12 @@ class CoinsController < ApplicationController
   end
 
   def show
-    listing_api_coinmarketcap
+
+    url = "https://api.coinmarketcap.com/v2/ticker/#{@coin.cmarketcap_id}/"
+    response = RestClient.get(url)
+    data = JSON.parse (response)
+    @price = data["data"]["quotes"]["USD"]["price"]
+
   end
 
   private

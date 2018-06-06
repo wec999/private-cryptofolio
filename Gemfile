@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'rest-client'
 gem 'devise'
+gem 'pry'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
