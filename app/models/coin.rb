@@ -9,4 +9,11 @@ class Coin < ApplicationRecord
     id = selection[0]["id"]
   end
 
+  def price(coinmarketcap_id)
+    url = "https://api.coinmarketcap.com/v2/ticker/#{coinmarketcap_id}/"
+    response = RestClient.get(url)
+    data = JSON.parse (response)
+    price = data["data"]["quotes"]["USD"]["price"]
+  end
+
 end

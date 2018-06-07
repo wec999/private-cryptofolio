@@ -1,7 +1,22 @@
+
+
 <h1>Coins#index</h1>
 <p>Find me in app/views/coins/index.html.erb</p>
 
 <% @coins.each do |coin| %>
   <%= coin.name  %>
   <%= coin.quantity %>
+  <%= coin.cmarketcap_id %>
+  <%= price = coin.price(coin.cmarketcap_id) %>
+  <%= link_to 'Borrar Moneda', coin_path(coin), method: :delete, data: {confirm: "Seguro?"} %>
+  <p>Cantidad en Dólares: $<%= coin.quantity*price %></p>
 <% end %>
+
+
+<%= link_to 'Nueva Moneda', new_coin_path %>
+
+<h4>PRECIO DEL DÓLAR TRM </h4>
+<%= @price_dollar %>
+<h4>Compra:</h4>
+<h4>Venta:</h4>
+
