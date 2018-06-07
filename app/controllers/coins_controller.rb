@@ -53,10 +53,14 @@ class CoinsController < ApplicationController
   end
 
   def price_dollar
+    precios = []
     url = "https://www.dolar-colombia.com/en/"
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
-    Float(html_doc.css('h1')[1].text.split[1].tr(',',''))
+    compra = Float(html_doc.css('strong')[0].text.split[1].tr(',',''))
+    venta = Float(html_doc.css('strong')[1].text.split[1].tr(',',''))
+    trm = Float(html_doc.css('h1')[1].text.split[1].tr(',',''))
+    precios.push(compra, venta, trm)
   end
 
 end

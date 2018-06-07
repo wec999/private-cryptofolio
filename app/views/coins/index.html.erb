@@ -10,13 +10,16 @@
   <%= price = coin.price(coin.cmarketcap_id) %>
   <%= link_to 'Borrar Moneda', coin_path(coin), method: :delete, data: {confirm: "Seguro?"} %>
   <p>Cantidad en Dólares: $<%= coin.quantity*price %></p>
+  <p>Cantidad en Pesos con TRM: $ <%= coin.quantity*price*@price_dollar[2] %></p>
 <% end %>
 
 
 <%= link_to 'Nueva Moneda', new_coin_path %>
 
 <h4>PRECIO DEL DÓLAR TRM </h4>
-<%= @price_dollar %>
+<%= @price_dollar[2] %>
 <h4>Compra:</h4>
+<%= @price_dollar[0] %>
 <h4>Venta:</h4>
+<%= @price_dollar[1] %>
 
