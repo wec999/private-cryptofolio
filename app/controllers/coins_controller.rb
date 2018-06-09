@@ -9,7 +9,9 @@ class CoinsController < ApplicationController
   def create
     @coin = Coin.new(coin_params)
     @coin.user = current_user
-    @coin.cmarketcap_id = @coin.listing_api_coinmarketcap(@coin.name)
+    id_symbol_array = @coin.api_coinmarketcap(@coin.name)
+    @coin.cmarketcap_id = id_symbol_array[0]
+    @coin.symbol = id_symbol_array[1]
     if @coin.save!
       # redirect_to coin_path(@coin)
       redirect_to coins_path
@@ -40,6 +42,9 @@ class CoinsController < ApplicationController
   end
 
   def show
+    @bittrex = @coin.api_bittrex
+    @cryptopia = @coin.api_cryptopia
+    @binance = @coin.api_binance
   end
 
   private

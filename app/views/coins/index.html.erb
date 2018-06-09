@@ -4,9 +4,10 @@
 <p>Find me in app/views/coins/index.html.erb</p>
 
 <% @coins.each do |coin| %>
-  <%= coin.name  %>
+  <%= link_to coin.name, coin_path(coin)  %>
   <%= coin.quantity %>
   <%= coin.cmarketcap_id %>
+  <%= coin.symbol %>
   <%= price = coin.price(coin.cmarketcap_id) %>
   <%= link_to 'Borrar Moneda', coin_path(coin), method: :delete, data: {confirm: "Seguro?"} %>
   <p>Cantidad en Dólares: $<%= coin.quantity*price %></p>
