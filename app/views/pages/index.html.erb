@@ -19,8 +19,36 @@
 <h3>Precio Bitcoin Compra: $<%= @price_coin*@price_dollar[0] %></h3>
 <h3>Precio Bitcoin Venta: $<%= @price_coin*@price_dollar[1] %></h3>
 
+<h3>Para comprar BTC</h3>
+<form id="multiplicar">
+  <input type="text" id="multiplicando" value=0 onChange="multiplicar();"> X
+  <%= @price_coin * @price_dollar[0] %> =
+  <input type="text" id="resultado">
+</form>
+
+<h3>Para Vender BTC</h3>
+<form id="multiplicar">
+  <input type="text" id="multiplicando2" value=0 onChange="multiplicar2();"> X
+  <%= @price_coin * @price_dollar[1] %> =
+  <input type="text" id="resultado2">
+</form>
 
 
+<script>
+function multiplicar() {
+  m1 = document.getElementById("multiplicando").value;
+  // m2 = document.getElementById("multiplicador").value;
+  r = m1 * <%= @price_coin %> * <%= @price_dollar[0] %>;
+  document.getElementById("resultado").value = r;
+}
+
+function multiplicar2() {
+  m1 = document.getElementById("multiplicando2").value;
+  // m2 = document.getElementById("multiplicador2").value;
+  r = m1 * <%= @price_coin %> * <%= @price_dollar[1] %>;
+  document.getElementById("resultado2").value = r;
+}
+</script>
 
 
 
