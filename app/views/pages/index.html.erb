@@ -1,0 +1,27 @@
+<h1>PRECIOS BITCOIN #home</h1>
+
+<!--
+<p>Pay to</p>
+
+<img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=1Chain4asCYNnLVbvG6pgCLGBrtzh4Lx4b" alt="">
+
+
+<%# @data[0]["utxo"].each do |d| %>
+  <p><%#=d["amount"]%></p>
+<%# end %> -->
+
+<h3>Precio Bitcoin Coinmarketcap: $<%= @price_coin %></h3>
+<h5>Precio Dolar TRM: $<%= @price_dollar[2] %> </h3>
+<h5>Precio Dolar Compra: $<%= @price_dollar[0] %> </h3>
+<h5>Precio Dolar Venta: $<%= @price_dollar[1] %> </h3>
+
+<h3>Precio Bitcoin TRM: $<%= @price_coin*@price_dollar[2] %></h3>
+<h3>Precio Bitcoin Compra: $<%= @price_coin*@price_dollar[0] %></h3>
+<h3>Precio Bitcoin Venta: $<%= @price_coin*@price_dollar[1] %></h3>
+
+
+
+
+
+
+
