@@ -11,6 +11,9 @@ class PagesController < ApplicationController
     @price_sell_localbitcoin = api_localbitcoins_sell
   end
 
+  def home
+  end
+
   def show
 
   end
