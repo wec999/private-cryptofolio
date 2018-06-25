@@ -7,6 +7,8 @@ class PagesController < ApplicationController
     @price_dollar = price_dollar
     id = api_coinmarketcap("bitcoin")
     @price_coin = price (id[0])
+    @price_buy_localbitcoin = api_localbitcoins_buy
+    @price_sell_localbitcoin = api_localbitcoins_sell
   end
 
   def show
@@ -42,6 +44,20 @@ class PagesController < ApplicationController
     response = RestClient.get(url)
     data = JSON.parse (response)
     price = data["data"]["quotes"]["USD"]["price"]
+  end
+
+  def api_localbitcoins_buy
+    url = "https://localbitcoins.com//buy-bitcoins-online/cop/.json"
+    response = RestClient.get(url)
+    data = JSON.parse(response)
+    price = data["data"]["ad_list"][0]["data"]["temp_price"]
+  end
+
+  def api_localbitcoins_sell
+    url = "https://localbitcoins.com//sell-bitcoins-online/cop/.json"
+    response = RestClient.get(url)
+    data = JSON.parse(response)
+    price = data["data"]["ad_list"][0]["data"]["temp_price"]
   end
 
 end

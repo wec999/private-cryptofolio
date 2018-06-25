@@ -1,50 +1,186 @@
+<!-- <div class="main-container">
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-3">
 
-      <h2>PRECIOS BITCOIN</h2>
 
-      <h5>Precio Dolar TRM: $<%= @price_dollar[2] %></h3>
-        <h5>Precio Dolar Compra: $<%= @price_dollar[0] %></h3>
-          <h5>Precio Dolar Venta: $<%= @price_dollar[1] %></h3>
 
-            <h4>Precio Bitcoin Coinmarketcap: $<%= @price_coin %></h4>
-            <h5>Precio Bitcoin TRM: $<%= @price_coin*@price_dollar[2] %></h5>
-            <h5>Precio Bitcoin Compra: $<%= @price_coin*@price_dollar[0] %></h5>
-            <h5>Precio Bitcoin Venta: $<%= @price_coin*@price_dollar[1] %></h5>
 
-            <h3>Para comprar BTC</h3>
-            <form id="multiplicar">
-              <input type="text" id="multiplicando" value=0 onChange="multiplicar();"> X
-              <%= @price_coin * @price_dollar[0] %> =
-              <input type="text" id="resultado">
-            </form>
 
-            <h3>Para Vender BTC</h3>
-            <form id="multiplicar">
-              <input type="text" id="multiplicando2" value=0 onChange="multiplicar2();"> X
-              <%= @price_coin * @price_dollar[1] %> =
-              <input type="text" id="resultado2">
-            </form>
+
 
             <hr>
             <p>Pay to</p>
 
             <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=1Chain4asCYNnLVbvG6pgCLGBrtzh4Lx4b" alt="">
 
-            <% @data[0]["utxo"].each do |d| %>
-            <p><%=d["amount"]%></p>
-            <%end %>
+            <%# @data[0]["utxo"].each do |d| %>
+            <p><%#=d["amount"]%></p>
+            <%#end %>
 
           </div>
         </div>
       </div>
+    </div> -->
+
+
+    <div class="container text-center grid">
+      <div class="card image">
+        <div class="card-content">
+          <img src="logo.png" alt="" width="150" class="img-circle">
+          <h3>PRECIOS BITCOIN</h3>
+
+
+          <h5>Precio Bitcoin TRM: $<%= (@price_coin*@price_dollar[2]).truncate(0) %></h5>
+
+          <h4>Precio Bitcoin Coinmarketcap: $<%= @price_coin.truncate(0) %></h4>
+          <h4>Precio Compra en LocalBitcoins: $<%= @price_buy_localbitcoin %></h4>
+          <h4>Precio Venta en LocalBitcoins: $<%= @price_sell_localbitcoin %></h4>
+
+
+
+
+
+
+
+
+
+          <p>Si queremos negociar con los precios del dolar</p>
+          <h5>Precio Bitcoin Compra: $<%= (@price_coin*@price_dollar[0]).truncate(0) %></h5>
+          <h5>Precio Bitcoin Venta: $<%= (@price_coin*@price_dollar[1]).truncate(0) %></h5>
+          <!-- <a href="#" class="btn btn-primary btn-lg">Get in touch</a> -->
+        </div>
+      </div>
+      <div class="card contributions">
+        <div class="card-content">
+          <h5>Precio Dolar TRM: $<%= @price_dollar[2] %></h3>
+            <h5>Dolar Compra: $<%= @price_dollar[0] %></h3>
+              <h5>Dolar Venta: $<%= @price_dollar[1] %></h3>
+              </div>
+            </div>
+            <div class="card followers">
+              <div class="card-content">
+                <h2>Para comprar BTC</h2>
+                <form id="multiplicar">
+                  <label for="multiplicando">Cantidad de BTC</label>
+                  <input type="text" id="multiplicando" value=0 onChange="multiplicar();"> X
+
+                  <select id="selector">
+                    <option value=<%= @price_dollar[2] + 100 %>>trm+100</option>
+                    <option value=<%= @price_dollar[2] + 200 %>>trm+200</option>
+                    <option value=<%= @price_dollar[2] %>>trm</option>
+                  </select>
+
+                  <%#= (@price_coin * @price_dollar[0]).truncate(0) %> =
+                  <input type="text" id="resultado">
+                  <label for="resultado">Pesos</label>
+                </form>
+              </div>
+            </div>
+            <div class="card repositories">
+              <div class="card-content">
+                <h2>Para Vender BTC</h2>
+                <form id="multiplicar2">
+                  <input type="text" id="multiplicando2" value=0 onChange="multiplicar2();"> X
+                  <%= (@price_coin * @price_dollar[1]).truncate(0) %> =
+                  <input type="text" id="resultado2">
+                </form>
+              </div>
+            </div>
+            <div class="card moreabout">
+              <div class="card-content">
+
+              </div>
+            </div>
+            <div class="card moreabout2">
+              <div class="card-content">
+
+              </div>
+            </div>
+            <div class="card moreabout3">
+              <div class="card-content">
+                <h2>Para Vender BTC - Convirtiendo desde pesos</h2>
+                <form id="convertirpesosabtc">
+                  <label for="pesos">Cantidad de Pesos</label>
+                  <input type="text" id="pesos" value=0 onChange="convertirpesosabtc();"> /
+                  <%= (@price_coin * @price_dollar[0]).truncate(0) %> =
+                  <input type="text" id="resultado3">
+                  <label for="resultado3">BTC</label>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <style>
+          /* TODO: design a CSS grid layout for user dashboard */
+          .grid {
+            display: grid;
+            grid-template-columns: 400px 1fr 1fr 1fr;
+            grid-template-rows: 50% 50%;
+            height: calc(100vh - 70px);
+          }
+
+          .card {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 10px;
+          }
+
+          .image {
+            grid-row: 1 /span 2;
+            grid-column: 1 /span 1;
+          }
+
+          .contributions {
+            grid-row: 1 /span 1;
+            grid-column: 2 /span 1;
+          }
+
+          .followers {
+            grid-row: 1 /span 1;
+            grid-column: 3 /span 1;
+          }
+
+          .repositories {
+            grid-row: 1 /span 1;
+            grid-column: 4 /span 1;
+          }
+
+          .moreabout {
+            grid-row: 2 /span 1;
+            grid-column: 2 /span 1;
+          }
+
+          .moreabout2 {
+            grid-row: 2 /span 1;
+            grid-column: 3 /span 1;
+          }
+
+          .moreabout3 {
+            grid-row: 2 /span 1;
+            grid-column: 4 /span 1;
+          }
+
+          @media(max-width: 720px) {
+            .grid {
+              display: block;/* re-define your grid for mobile and tablet */
+            }
+          }
+        </style>
 
 <script>
-  function multiplicar() {
+function multiplicar() {
   m1 = document.getElementById("multiplicando").value;
+  selector = document.getElementById("selector");
+  m2 = selector[selector.selectedIndex].value;
   // m2 = document.getElementById("multiplicador").value;
-  r = m1 * <%= @price_coin %> * <%= @price_dollar[0] %>;
+  r = m1 * m2 * <%= @price_coin %>
+  // r = m1 * <%#= @price_coin %> * <%#= @price_dollar[0] %>;
   document.getElementById("resultado").value = r;
 }
 
@@ -52,7 +188,14 @@ function multiplicar2() {
   m1 = document.getElementById("multiplicando2").value;
   // m2 = document.getElementById("multiplicador2").value;
   r = m1 * <%= @price_coin %> * <%= @price_dollar[1] %>;
-  document.getElementById("resultado2").value = r;
+  document.getElementById("resultado2").value = r.toPrecision(8);
+}
+
+function convertirpesosabtc() {
+  m1 = document.getElementById("pesos").value;
+  // m2 = document.getElementById("multiplicador2").value;
+  r = m1 /( <%= @price_coin %> * <%= @price_dollar[1] %>);
+  document.getElementById("resultado3").value = r.toPrecision(5);
 }
 </script>
 
