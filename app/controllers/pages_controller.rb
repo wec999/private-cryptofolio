@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class PagesController < ApplicationController
   def index
     @address = "1Chain4asCYNnLVbvG6pgCLGBrtzh4Lx4b"
@@ -12,6 +14,8 @@ class PagesController < ApplicationController
   end
 
   def home
+     @price_buy_localbitcoin = api_localbitcoins_buy
+     @price_sell_localbitcoin = api_localbitcoins_sell
   end
 
   def show
