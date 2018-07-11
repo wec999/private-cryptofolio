@@ -9,13 +9,19 @@ class PagesController < ApplicationController
     @price_dollar = price_dollar
     id = api_coinmarketcap("bitcoin")
     @price_coin = price (id[0])
-    @price_buy_localbitcoin = api_localbitcoins_buy
-    @price_sell_localbitcoin = api_localbitcoins_sell
+
+    @price_buy_localbitcoin = api_localbitcoins_sell
+    @price_sell_localbitcoin = api_localbitcoins_buy
   end
 
   def home
-     @price_buy_localbitcoin = api_localbitcoins_buy
-     @price_sell_localbitcoin = api_localbitcoins_sell
+    id = api_coinmarketcap("bitcoin")
+    @price_coin = price (id[0])
+     @price_dollar = price_dollar
+     @price_buy = @price_coin * @price_dollar[0] - 800000
+     @price_sell = @price_coin * @price_dollar[2] - 300000
+     # @price_buy_localbitcoin = api_localbitcoins_buy
+     # @price_sell_localbitcoin = api_localbitcoins_sell
   end
 
   def show
