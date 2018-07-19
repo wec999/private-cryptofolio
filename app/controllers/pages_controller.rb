@@ -19,7 +19,7 @@ class PagesController < ApplicationController
     @price_coin = price (id[0])
      @price_dollar = price_dollar
      @price_buy = @price_coin * @price_dollar[0] - 800000
-     @price_sell = @price_coin * @price_dollar[2] - 300000
+     @price_sell = @price_coin * (@price_dollar[2]+120) - 300000
      # @price_buy_localbitcoin = api_localbitcoins_buy
      # @price_sell_localbitcoin = api_localbitcoins_sell
   end
